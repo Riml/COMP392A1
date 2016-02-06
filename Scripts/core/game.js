@@ -80,7 +80,7 @@ function init() {
     cubeHand = new Object3D();
     cubeMaterial = new LambertMaterial({ color: String(myColor), map: texture });
     //left leg
-    addBodyPart(1, 0, 0, 0.31, 0.72, 0.21, 0, cubeBody);
+    addBodyPart(1, 0, 0, 0.31, 0.72, 0.21, 0, cubeBody); // all values copied-past "as is" from Blender 
     addBodyPart(1, -0.5, 1.55, 0.2, 0.2, 1.25, 0, cubeBody);
     addBodyPart(0.8, -0.5, 4.2, 0.2, 0.2, 1.25, -8, cubeBody);
     //right leg
@@ -89,7 +89,7 @@ function init() {
     addBodyPart(-1, -0.5, 4.18, 0.2, 0.2, 1.25, 0, cubeBody);
     //left hand
     addBodyPart(2, -0.4, 9.2, 0.2, 0.2, 1, 40.5, cubeBody);
-    //hand rotation
+    //hand - rotating part
     addBodyPart(0.29, -0.34, 0.97, 0.2, 0.2, 1, 13.6, cubeHand);
     addBodyPart(0.79, -0.45, 2.6, 0.26, 0.08, 0.52, 26.5, cubeHand);
     addBodyPart(0.05, -0.45, 2.5, 0.1, 0.09, 0.2, -37.5, cubeHand);
@@ -110,12 +110,12 @@ function init() {
     spotLight = new SpotLight(0xffffff);
     spotLight.position.set(14, 40, 12);
     spotLight.rotation.set(0, 0, 0);
-    //spotLight.intensity=0.2;
+    spotLight.intensity = 2;
     spotLight.castShadow = true;
-    //make shadows more neat an a bit brighter
-    //spotLight.shadowMapWidth = 1024;
-    //spotLight.shadowMapHeight = 1024;
-    //spotLight.shadowDarkness = 0.5;
+    //make shadows more neat and a bit brighter
+    spotLight.shadowMapWidth = 1024;
+    spotLight.shadowMapHeight = 1024;
+    spotLight.shadowDarkness = 0.5;
     spotLight.shadowCameraFar = 1000;
     spotLight.shadowCameraNear = 0.1;
     scene.add(spotLight);
@@ -139,7 +139,7 @@ function addBodyPart(x, z, y, h, d, w, z_rotation, attachTo) {
     thisCube.position.set(x, y, z);
     thisCube.rotation.z = -z_rotation / 180 * Math.PI;
     thisCube.castShadow = true;
-    //thisCube.receiveShadow = true;
+    thisCube.receiveShadow = true;
     attachTo.add(thisCube);
 }
 function onResize() {
@@ -173,8 +173,6 @@ function gameLoop() {
     cubeMan.rotation.x += control.xRotationSpeed;
     cubeMan.rotation.y += control.yRotationSpeed;
     cubeMan.rotation.z += control.zRotationSpeed;
-    //console.log(planeTestMaterial.color.getHexString());
-    //console.log(control.newColor);
     planeTestMaterial.color.setStyle(control.newColor);
     // render using requestAnimationFrame
     requestAnimationFrame(gameLoop);
