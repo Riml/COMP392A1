@@ -73,8 +73,7 @@ function init() {
     texture= THREE.ImageUtils.loadTexture('Content/Textures/wood.jpg');
    
     //Add a Plane to the Scene
-    myColor=new Color(0xFACEEE);
-    planeTestMaterial = new LambertMaterial({ color: String(myColor) })
+    planeTestMaterial = new LambertMaterial({ color: 0x123456 })
     plane = new gameObject(new PlaneGeometry(24, 24, 1, 1),planeTestMaterial,0, 0, 0);
     plane.rotation.x = -0.5 * Math.PI;
     plane.receiveShadow = true;
@@ -137,7 +136,7 @@ function init() {
     
     // add controls
     gui = new GUI();
-    control= new Control(0.001,0.00001,"#FACEEE");
+    control= new Control(0.001,0.00,"#badbad");
     addControl(control);
 
     // Add framerate stats
@@ -192,7 +191,7 @@ function gameLoop(): void {
     cubeMan.rotation.x+=control.xRotationSpeed;
     cubeMan.rotation.y+=control.yRotationSpeed;
     cubeMan.rotation.z+=control.zRotationSpeed;
-    planeTestMaterial.color.setStyle(control.newColor);
+    cubeMaterial.color.setStyle(control.newColor);
     // render using requestAnimationFrame
     requestAnimationFrame(gameLoop);
 	// render the scene

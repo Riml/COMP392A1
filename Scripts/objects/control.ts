@@ -14,7 +14,7 @@ module objects {
             this.handRotationSpeed = startHandRotation;
             this.xRotationSpeed = startAxisRotation;
             this.yRotationSpeed = startAxisRotation;
-            this.zRotationSpeed = startAxisRotation
+            this.zRotationSpeed = startAxisRotation;
             this.newColor = color;
         }
        //PUBLIC METHODS +++++++++++++++++++++++++++++++++++++++
